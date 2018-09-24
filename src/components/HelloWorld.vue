@@ -37,7 +37,13 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+//  data:function () {
+//      return {
+//          mes: ' adlkjhawkdhkjawhdkjhawkjhdkhawkhdkjhawkhdkhawkdhkhawkdhhawkdjhawd'
+//      }
+//  }
+
 }
 </script>
 
