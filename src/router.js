@@ -1,10 +1,10 @@
-import Vue    from 'vue'
+import Vue from 'vue'
 import Router from 'vue-router'
-import Home   from './views/Home.vue'
-import Films  from './components/Films.vue'
-import Test   from './TestEnvironment/TestEnvironment.vue'
+import Home from './views/Home.vue'
+import Films from './components/Films.vue'
+import Test from './TestEnvironment/TestEnvironment.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
   mode: 'history',
@@ -15,7 +15,7 @@ export default new Router({
       name: 'home',
       component: Home
     },
-      {
+    {
       path: '/films',
       name: 'films',
       component: Films
