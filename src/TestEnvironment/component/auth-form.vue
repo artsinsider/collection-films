@@ -10,4 +10,4 @@
 
 </template>
 
-<style lang="scss" src="../../css/authForm.scss"></style>
+<style lang="scss" ></style>

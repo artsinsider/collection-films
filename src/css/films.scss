@@ -44,7 +44,6 @@ body {
   }
 
   .logo {
-    font-family: Tahoma;
     display: block;
     font-size: 80px;
     color: #fff;
@@ -162,33 +161,30 @@ body {
     color: #4d4d4d;
     font-weight: bold;
   }
+  .collection {
+    margin-top: 10px;
+    height: 79vh;
+    overflow: scroll;
 
-  .film {
-    background: #fff;
-    padding: 5px;
-    min-width: 400px;
-    margin-bottom: 2px;
+    .film {
+      background: #fff;
+      padding: 5px;
+      min-width: 400px;
+      margin-bottom: 2px;
+      height: 40px;
 
-    .image {
-      box-shadow: 1px 1px 2px #4d4d4d;
-      max-width: 40px;
-      position: relative;
-      display: inline;
-      top: 2px;
-    }
+      .name-film {
+        margin: 0 10px;
+        line-height: 40px;
+      }
 
-    .name-film {
-      display: inline-block;
-      margin: 0 10px;
-      position: relative;
-      top: -13px;
-    }
-
-    .genre {
-      font-size: 10px;
-      color: #989898;
+      .rating {
+        font-size: 12px;
+        color: #daa014;
+      }
     }
   }
+
 }
 
 .right {

@@ -20,13 +20,10 @@
             <button class="search">ПОИСК</button>
             <div class="container-films">
                 <span class="title">ТОП 5 за последние 7 дней</span>
-                <div>
-                    <div class="film" v-for="film in films">
-                        <img class="image" :src="film.img"  alt="">
-                        <div class="name-film">
-                            {{film.name}}
-                            <div class="genre">{{film.genre}}</div>
-                        </div>
+                <div class="collection">
+                    <div class="film" v-for="film in collection">
+                        <span class="name-film">{{film.title}}</span>
+                        <span class="rating">{{film.rating}}</span>
                     </div>
                 </div>
             </div>
@@ -73,75 +70,31 @@
       data:function () {
           return {
               message: 'Hello Vue!',
-              films: [
-                  {   name: "Пираты карибского моря",
-                      genre: 'Фэнтези/Боевик',
-                      publish: '2017 г.',
-                      img: 'http://t1.gstatic.com/images?q=tbn:ANd9GcTjPHMJa8ur8he05sqngUOi0VMdsu5lDHlwoJpaM8p2hNn0bhD5',
-                      active: true
-                  },
-                  {   name: "Код Да Винчи",
-                      genre: 'Триллер/Детектив',
-                      publish: '2006 г.',
-                      img:'http://t1.gstatic.com/images?q=tbn:ANd9GcSp3v_UpvyFndFx3IA4JmWQFgD2bsoXgY4SbVSyyx6bPu0GF9P6',
-                      active: true
-                  },
-                  {   name: "Ночь в музее",
-                      genre: 'Фэнтези/Приключения',
-                      publish: '2014 г.',
-                      img: 'http://www.gorod.cn.ua/image/news/gorod_5/gr_23.01.14_kino_16.jpg',
-                      active: true
-                  },
-                  {   name: "Тачки",
-                      genre: 'Спортивный фильм/Приключения',
-                      publish: '2006 г.',
-                      img: 'http://t0.gstatic.com/images?q=tbn:ANd9GcTTMBKNW-PjAQvAZ8Y-O21lbntbkOQGIVIaB-Cn3drOu6KN_K05',
-                      active: true
-                  },
-                  {   name: "Люди Икс",
-                      genre: 'Кинофантастика/Триллер',
-                      publish: '2003 г.',
-                      img: 'https://upload.wikimedia.org/wikipedia/ru/thumb/6/69/X-men2_poster.jpg/235px-X-men2_poster.jpg',
-                      active: true
-                  },
-                  {   name: "Миссия невыполнима 3",
-                      genre: 'Триллер/Боевик',
-                      publish: '2006 г.',
-                      img: 'https://upload.wikimedia.org/wikipedia/ru/thumb/4/4c/Mi_III.jpg/211px-Mi_III.jpg',
-                      active: true
-                  },
-                  {   name: "Возвращение супермена",
-                      genre: 'Фэнтези/Кинофантастика',
-                      publish: '2006 г.',
-                      img: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/76/Superman_back.jpg/203px-Superman_back.jpg',
-                      active: true
-                  }
-              ],
               links: [
                   {
-                      name:"Поиск",
+                      name:'Поиск',
                       status: true
-                  },{
-                      name: "Новости",
+                  },
+                  {
+                      name:'Новости',
                       status: false
-                  } ,{
-                      name: "Рекомендуемое",
+                  },
+                  {
+                      name:'Рекомендуемое',
                       status: false
-                  }, {
-                      name: "Избранное",
+                  },
+                  {
+                      name:'Избранное',
                       status: false
                   }
               ],
               leftMenu: true,
               dialog: false,
-              quastion: 'Добавить фильм в картотеку ?'
+              quastion: 'Добавить фильм в картотеку ?',
+              collection: []
           }
       },
-
       computed: {
-          reverseComputed() {
-              return this.message.split('').reverse().join();
-          }
       },
         methods: {
             changeStatus: function(e) {
@@ -150,17 +103,25 @@
                     } else { link.status = false; }
                 })
             },
-            onClose: function () { this.dialog = false; },
-            onOpenDialog: function () { this.dialog = true; },
-            onConfirm: function () { this.dialog = false; },
-            onCancel: function () { this.dialog = false; },
+            onClose: function () { this.dialog = false },
+            onOpenDialog: function () { this.dialog = true },
+            onConfirm: function () { this.dialog = false },
+            onCancel: function () { this.dialog = false },
         },
         mounted() {  // выполняет действия перед монтирование приложения или компонента
-            // alert('START')
+            const url = 'http://api.freetor.dev.origin-creative-studio.com:3000/movies?lang=ru&limit=75'
+            return fetch(url)
+                .then(response => {
+                    return response.json()
+                })
+                .then(json => {
+                    this.collection = json.data;
+                })
+                .catch((error, inf) => {
+                    return console.log('API ERROR', error, inf)
+                })
         }
-
     }
 </script>
-
 
 <style lang="scss" src="../css/films.scss"> </style>
