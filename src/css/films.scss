@@ -163,7 +163,7 @@ body {
   }
   .collection {
     margin-top: 10px;
-    height: 79vh;
+    height: 60vh;
     overflow: scroll;
 
     .film {
@@ -190,7 +190,8 @@ body {
 .right {
   height: 100vh;
   background: #E6E6ED;
-  text-align: center;
+  padding: 0 10px;
+  overflow: scroll;
 
   h3 {
     margin: 40px 0 0;
@@ -205,5 +206,23 @@ body {
   }
   a {
     color: #42b983;
+  }
+
+  .title {
+    .filter-block {
+      padding-top: 10px;
+
+      .check-save {
+        width: 15px;
+        height: 15px;
+        margin: 5px 0;
+      }
+
+      .text-check {
+        font-size: 14px;
+        padding-left: 10px;
+        color: #4d4d4d;
+      }
+    }
   }
 }

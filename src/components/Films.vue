@@ -29,43 +29,22 @@
             </div>
         </div>
         <div class="right" >
-            <img alt="Vue logo" src="../assets/logo.png">
-            <div class="hello">
-                <p>
-                    For guide and recipes on how to configure / customize this project,<br>
-                    check out the
-                    <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-                </p>
-                <h3>Installed CLI Plugins</h3>
-                <ul>
-                    <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-                    <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>
-                    <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-                    <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest" target="_blank" rel="noopener">unit-jest</a></li>
-                </ul>
-                <h3>Essential Links</h3>
-                <ul>
-                    <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-                    <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-                    <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-                    <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-                    <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-                </ul>
-                <h3>Ecosystem</h3>
-                <ul>
-                    <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-                    <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-                    <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-                    <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-                    <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-                </ul>
+            <div class="title" v-for="cat in categori">
+                {{cat.name}}
+                <div class="filter-block" v-for="elem in cat.elems">
+                    <input class="check-save" type="checkbox" name="elem">
+                    <span class="text-check">{{elem}}</span>
+                </div>
             </div>
-
         </div>
     </div>
 </template>
 
 <script>
+    import data from '../API/data'
+
+    console.log('data', data)
+
     export default {
       data:function () {
           return {
@@ -91,7 +70,30 @@
               leftMenu: true,
               dialog: false,
               quastion: 'Добавить фильм в картотеку ?',
-              collection: []
+              collection: [],
+              categori:[
+                  {
+                    name: 'Категории',
+                    elems: ['Фильмы','Мультфильмы']
+                  },
+                  {
+                    name: 'Жанры',
+                    elems: ['Боевик','Комедия','Драма','Фантастика','Фентези','Триллер','Ужасы','Документальный','Серила','ТВ-передача',]
+                  },
+                  {
+                      name: 'Качество',
+                      elems: ['480р','720р','1024р','1892р и выше']
+                  },
+                  {
+                      name: 'Субтитры',
+                      elems: ['Без субтитров','рус.','англ.']
+                  }
+                  ,
+                  {
+                      name: 'Бубляж',
+                      elems: ['Без дублежа','Любительский','Професиональный']
+                  }
+              ]
           }
       },
       computed: {
@@ -118,6 +120,7 @@
                     this.collection = json.data;
                 })
                 .catch((error, inf) => {
+                this.collection = data;
                     return console.log('API ERROR', error, inf)
                 })
         }
@@ -125,3 +128,37 @@
 </script>
 
 <style lang="scss" src="../css/films.scss"> </style>
+
+
+
+<!--<img alt="Vue logo" src="../assets/logo.png">-->
+<!--<div class="hello">-->
+    <!--<p>-->
+        <!--For guide and recipes on how to configure / customize this project,<br>-->
+        <!--check out the-->
+        <!--<a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.-->
+    <!--</p>-->
+    <!--<h3>Installed CLI Plugins</h3>-->
+    <!--<ul>-->
+        <!--<li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>-->
+        <!--<li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>-->
+        <!--<li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>-->
+        <!--<li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest" target="_blank" rel="noopener">unit-jest</a></li>-->
+    <!--</ul>-->
+    <!--<h3>Essential Links</h3>-->
+    <!--<ul>-->
+        <!--<li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>-->
+        <!--<li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>-->
+        <!--<li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>-->
+        <!--<li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>-->
+        <!--<li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>-->
+    <!--</ul>-->
+    <!--<h3>Ecosystem</h3>-->
+    <!--<ul>-->
+        <!--<li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>-->
+        <!--<li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>-->
+        <!--<li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>-->
+        <!--<li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>-->
+        <!--<li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>-->
+    <!--</ul>-->
+<!--</div>-->
