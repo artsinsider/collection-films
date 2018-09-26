@@ -24,7 +24,12 @@
                 </svg>
                 <input type="password" class="login__input pass" placeholder="Password" autocomplete='off'/>
               </div>
-              <button type="button" class="login__submit">Sign in</button>
+              <button type="button"
+                      :class="{'login__submit': true, success, processing}"
+                      class="login__submit"
+                      @click='goHomeFilms'>
+                Sign in
+              </button>
               <p class="login__signup">Don't have an account? &nbsp;<a>Sign up</a></p>
             </div>
           </div>
@@ -43,6 +48,24 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  data:function () {
+      return {
+          processing: false,
+          success: false
+      }
+  },
+  methods: {
+      goHomeFilms: function(){
+          this.processing = true;
+          const that = this;
+          setTimeout(function() {
+              that.success = true;
+              setTimeout(function () {
+                  that.$router.push({path: 'films'})
+              },500);
+          },1300)
+      }
   }
 }
 </script>

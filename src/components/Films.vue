@@ -2,7 +2,7 @@
     <div id="films">
         <div class="left" v-if="leftMenu" >
             <div class="left-side-menu">
-                <h1 class="logo" >ASF</h1>
+                <h1 class="logo" >VIGE</h1>
                 <ul @click="changeStatus($event)">
                     <li v-for="link in links"
                         :class="{'active': link.status}"
@@ -42,9 +42,6 @@
 
 <script>
     import data from '../API/data'
-
-    console.log('data', data)
-
     export default {
       data:function () {
           return {
