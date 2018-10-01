@@ -2,7 +2,7 @@
     <div id="films">
         <div class="left" v-if="leftMenu" >
             <div class="left-side-menu">
-                <h1 class="logo" >VIGE</h1>
+                <h1 class="logo"  @click="goHome()">VIGE</h1>
                 <ul @click="changeStatus($event)">
                     <li v-for="link in links"
                         :class="{'active': link.status}"
@@ -18,6 +18,7 @@
         <div class="center">
             <input class="search-data" type="text"/>
             <button class="search">ПОИСК</button>
+
             <div class="container-films">
                 <span class="title">ТОП 5 за последние 7 дней</span>
                 <div class="collection">
@@ -30,11 +31,13 @@
         </div>
         <div class="right" >
             <div class="title" v-for="cat in categori">
-                {{cat.name}}
-                <div class="filter-block" v-for="elem in cat.elems">
-                    <input class="check-save" type="checkbox" name="elem">
-                    <span class="text-check">{{elem}}</span>
-                </div>
+               <span class="categori-name">{{cat.name}}</span>
+
+                <label v-for="elem in cat.elems" id="elem"  @click="checkFilter(elem)">
+                    <input class="checkbox" type="checkbox" name="checkbox-test">
+                    <span class="checkbox-custom"></span>
+                    <span class="label">{{elem}}</span>
+                </label>
             </div>
         </div>
     </div>
@@ -106,6 +109,12 @@
             onOpenDialog: function () { this.dialog = true },
             onConfirm: function () { this.dialog = false },
             onCancel: function () { this.dialog = false },
+            checkFilter: function (name) {
+                console.log(name)
+            },
+            goHome: function () {
+                this.$router.push({path: '/'})
+            }
         },
         mounted() {  // выполняет действия перед монтирование приложения или компонента
             const url = 'http://api.freetor.dev.origin-creative-studio.com:3000/movies?lang=ru&limit=75'
@@ -118,7 +127,7 @@
                 })
                 .catch((error, inf) => {
                 this.collection = data;
-                    return console.log('API ERROR', error, inf)
+                    return console.error('API ERROR', error, inf)
                 })
         }
     }

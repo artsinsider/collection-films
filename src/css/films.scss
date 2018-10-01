@@ -34,6 +34,7 @@ body {
 
 .left {
   transition: all .3s cubic-bezier(.65, .05,.36,1);
+  box-shadow: 3px 0px 6px 1px #d2d2d2;
 
   .left-side-menu {
     z-index: 1;
@@ -50,6 +51,7 @@ body {
     text-align: center;
     margin: 0 10px 0;
     text-shadow: 1px 4px 1px #b42e32, 0 0 0 #591617, 1px 4px 1px #23090a;
+    cursor: pointer;
   }
 
   ul{
@@ -129,7 +131,7 @@ body {
 }
 
 .center {
-  margin: 40px;
+  margin: 20px 40px;
 
   .search-data {
     width: 85%;
@@ -154,7 +156,7 @@ body {
 
 
 .container-films {
-  margin-top: 50px;
+  margin-top: 30px;
 
   .title {
     font-size: 16px;
@@ -163,7 +165,7 @@ body {
   }
   .collection {
     margin-top: 10px;
-    height: 60vh;
+    height: 80vh;
     overflow: scroll;
 
     .film {
@@ -189,9 +191,10 @@ body {
 
 .right {
   height: 100vh;
-  background: #E6E6ED;
+  background: #ebebeb;
   padding: 0 10px;
   overflow: scroll;
+  box-shadow: -2px 0px 14px 0px #d2d2d2;
 
   h3 {
     margin: 40px 0 0;
@@ -208,21 +211,48 @@ body {
     color: #42b983;
   }
 
+  .categori-name {
+    margin: 5px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
   .title {
-    .filter-block {
-      padding-top: 10px;
+    display: grid;
+    margin: 15px;
 
-      .check-save {
-        width: 15px;
-        height: 15px;
-        margin: 5px 0;
-      }
+    .checkbox {
+      display: none;
+    }
+    .checkbox-custom {
+      position: relative;
+      width: 17px;
+      height: 17px;
+      border: 1px solid #cacaca;
+      border-radius: 2px;
+      background: #f1f5fb;
+    }
 
-      .text-check {
-        font-size: 14px;
-        padding-left: 10px;
-        color: #4d4d4d;
-      }
+    .checkbox-custom,
+    .label {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 5px;
+      font-size: 14px;
+      color: #6f6f6f;
+    }
+
+    .checkbox:checked + .checkbox-custom::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      bottom: 2px;
+      left: 2px;
+      background: #ec5f31;
+      border-radius: 2px;
     }
   }
+
 }
