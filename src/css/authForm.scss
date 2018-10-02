@@ -81,6 +81,7 @@ input, button {
   width: 30vh;
   height: 53vh;
   overflow: hidden;
+  border-radius: 3px;
 }
 
 .login {
@@ -90,6 +91,14 @@ input, button {
   background: rgba(0,0,0,.42);
   transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
   transform: scale(1);
+
+
+  .logo {
+    width: 180px;
+    margin: 28px;
+    box-shadow: 7px 4px 11px 0px #3c1f39;
+    border-radius: 100%;
+  }
 
   &.inactive {
     opacity: 0;
